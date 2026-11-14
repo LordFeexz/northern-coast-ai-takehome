@@ -1,0 +1,22 @@
+{
+  "name": "northern-coast-lead-scoring",
+  "version": "1.0.0",
+  "description": "Northern Coast Beverages B2B Lead Scoring Endpoint",
+  "type": "module",
+  "main": "api/score.ts",
+  "scripts": {
+    "start": "node --experimental-strip-types src/server.ts",
+    "test": "node --experimental-strip-types tests/unit.test.ts",
+    "test:verify": "node --experimental-strip-types tests/verification.test.ts",
+    "test:e2e": "playwright test",
+    "test:all": "node --experimental-strip-types tests/unit.test.ts && node --experimental-strip-types tests/verification.test.ts && playwright test"
+  },
+  "engines": {
+    "node": ">=22.6.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.0",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.5.0"
+  }
+}

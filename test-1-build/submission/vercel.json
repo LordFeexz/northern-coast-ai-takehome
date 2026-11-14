@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "functions": {
+    "api/score.ts": {
+      "maxDuration": 30
+    }
+  },
+  "routes": [
+    {
+      "src": "/api/score",
+      "dest": "/api/score.ts"
+    }
+  ]
+}
