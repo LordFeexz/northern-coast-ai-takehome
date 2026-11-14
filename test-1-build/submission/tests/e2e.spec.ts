@@ -1,14 +1,11 @@
 import { test, expect, request } from '@playwright/test';
-import { createServer } from '../src/server.ts';
-import type { Server } from 'node:http';
+import server from '../src/server.ts';
 import type { AddressInfo } from 'node:net';
 
-let server: Server;
 let serverBaseUrl: string;
 
 test.beforeAll(async () => {
   process.env.NODE_ENV = 'test';
-  server = createServer();
   await new Promise<void>((resolve) => server.listen(0, '127.0.0.1', () => resolve()));
   const port = (server.address() as AddressInfo).port;
   serverBaseUrl = `http://127.0.0.1:${port}`;
@@ -16,7 +13,7 @@ test.beforeAll(async () => {
 });
 
 test.afterAll(async () => {
-  if (server) {
+  if (server.listening) {
     await new Promise<void>((resolve) => server.close(() => resolve()));
     console.log('[playwright-e2e] Server stopped');
   }

@@ -19,10 +19,14 @@ export function createServer(): http.Server {
   });
 }
 
-// If executed directly, start listening
+const server = createServer();
+
+// Vercel imports the server and manages its listener.
+export default server;
+
+// When run directly, Node needs an explicit listener.
 const isMainModule = import.meta.url === `file://${process.argv[1]}`;
 if (isMainModule) {
-  const server = createServer();
   server.listen(PORT, HOST, () => {
     console.log(`[server] Northern Coast lead scoring server listening on http://${HOST}:${PORT}`);
   });
